@@ -1,0 +1,7 @@
+{
+	"require": {
+        "fzaninotto/faker": "^1.5",
+        "phpmailer/phpmailer": "~5.2",
+        "ircmaxell/random-lib": "^1.2"
+    }
+}
