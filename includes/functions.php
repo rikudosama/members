@@ -137,7 +137,7 @@ if (! function_exists('redirect_intent_or')) {
   
   function redirect_intent_or($default_url){
       
-       if($_SESSION['forwartding_url']){
+       if($_SESSION['forwarding_url']){
           $url = $_SESSION['forwarding_url'];
        }else{
         $url = $default_url;
