@@ -15,7 +15,7 @@ if (isset($_POST['login'])) {
        
          extract($_POST);
 
-         $query = $db->prepare("SELECT id, pseudo, password AS hashed_password, email, avatar FROM members  
+         $query = $db->prepare("SELECT id, pseudo, password AS hashed_password, email FROM members  
                             WHERE (pseudo = :identifiant OR email = :identifiant) 
                             AND active = '1' ");
          $query->execute([
@@ -30,7 +30,7 @@ if (isset($_POST['login'])) {
           
               $_SESSION['user_id'] = $user->id;
               $_SESSION['pseudo'] = $user->pseudo;
-              $_SESSION['avatar'] = $user->avatar;
+              //$_SESSION['avatar'] = $user->avatar;
               $_SESSION['email'] = $user->email;
 
               //si l'utilisateur a decidé de garder sa session active 
@@ -39,7 +39,7 @@ if (isset($_POST['login'])) {
                    remember_me($user->id);
               }
 
-               redirect('profile.php?id='.$user->id);
+               redirect_intent_or('profile.php?id='.$user->id);
          }else{
             set_flash('combinaison indentifiant/password incorrect', 'danger');
             save_input_data();

@@ -41,15 +41,27 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">Espace Membre</a>
+                <ul class="nav navbar-nav">
+                  <li><a href="list_users.php">Liste des membres</a></li>
+                  <li><a href="#">Link</a></li>
+                </ul>            
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav pull-right">
-                    <li class="active"><a href="index.php">Acueil</a></li>
-                    <li><a href="profile.php"><i class="fa fa-user"></i> Profil</a></li>
-                    <li><a href="register_shutdown_function">inscription</a></li>
-                    <li><a href="login.php">Connexion</a></li>
+                    <li><a href="index.php">Acueil</a></li>
+                    <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="profile.php"><i class="fa fa-user"></i> Mon profile</a></li>
+                  <li><a href="change_password.php"><i class="fa fa-cog"></i> changer mon mot de passe</a></li>
+                  <li><a href="edit_user.php?id=<?= get_session('user_id')?>"><i class="fa fa-pencil"></i> Edition de profil</a></li>
+                  <li role="separator" class="divider"></li>
+                  <!--<li class="dropdown-header">Nav header</li>-->
+                  <li><a href="logout.php"><i class="fa fa-sign-out"></i> Déconnection</a></li>
+                  <li><a href="login.php"><i class="fa fa-sign-in"></i> Connexion</a></li>
+                </ul>
+              </li>              
                 </ul>
             </div>
-            <!--/.nav-collapse -->
         </div>
     </nav>

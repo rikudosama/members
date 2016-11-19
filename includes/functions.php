@@ -39,6 +39,21 @@ if(!function_exists('say_hello')){
 }
 
 
+//cell count funtion
+//retourne le nombre d'enregistrement trouver en respectant une certaine condition
+if (! function_exists('cell_count')) {
+  
+  function cell_count($table, $field_name, $field_value){
+      
+      global $db;
+
+      $query = $db->prepare("SELECT * FROM $table WHERE $field_name = ?");
+      $query->execute([$field_value]);
+
+      return $query->rowCount();
+  }
+}
+
 //funtion remember_me
 if (! function_exists('remember_me')) {
   
@@ -117,17 +132,18 @@ if (! function_exists('auto_login')) {
   }
 }
 //fonction de redirection amical
+//function to redirect the member intention page
 if (! function_exists('redirect_intent_or')) {
   
   function redirect_intent_or($default_url){
       
-       if($_SESSION['forwading_url']){
-          $url = $_SESSION['forwading_url'];
+       if($_SESSION['forwartding_url']){
+          $url = $_SESSION['forwarding_url'];
        }else{
         $url = $default_url;
        }
 
-    $_SESSION['forwading_url'] = null;
+    $_SESSION['forwarding_url'] = null;
     redirect('$url');
   }
 }
@@ -186,12 +202,13 @@ if(! function_exists('bcrypt_verify_password')){
 
 
 //find an user by his id
+ //retrouver un membre grace à son Id
 if (! function_exists('find_user_by_id')) {
   
   function find_user_by_id($id){
       global $db;
 
-     $query = $db->prepare('SELECT id, name, pseudo, email, city, country, sex, twitter, github, facebook, website, available_for_hiring, bio,avatar FROM members WHERE id = ?');
+     $query = $db->prepare('SELECT id, name, pseudo, email, city, country, sex, twitter, github, available_for_hiring, bio,avatar FROM members WHERE id = ?');
      $query->execute([$id]);
 
      $data = $query->fetch(PDO::FETCH_OBJ);

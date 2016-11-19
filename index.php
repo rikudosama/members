@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 //on inclut tout les fichier fonction comme basse de donnée
 require('includes/init.php');
