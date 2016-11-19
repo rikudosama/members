@@ -30,7 +30,7 @@ if (isset($_POST['login'])) {
           
               $_SESSION['user_id'] = $user->id;
               $_SESSION['pseudo'] = $user->pseudo;
-              //$_SESSION['avatar'] = $user->avatar;
+              $_SESSION['avatar'] = $user->avatar;
               $_SESSION['email'] = $user->email;
 
               //si l'utilisateur a decidé de garder sa session active 
