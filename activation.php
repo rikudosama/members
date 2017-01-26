@@ -1,9 +1,9 @@
-<?php 
+<?php
 session_start();
 require ("includes/init.php");
 require ("filters/guest_filter.php");
 
-if(!empty($_GET['p']) && is_already_in_use('pseudo', $_GET['p'], 'users') 
+if(!empty($_GET['p']) && is_already_in_use('pseudo', $_GET['p'], 'users')
 	&& !empty($_GET['token'])
 	){
    $pseudo = $_GET['p'];
@@ -17,16 +17,12 @@ if(!empty($_GET['p']) && is_already_in_use('pseudo', $_GET['p'], 'users')
    $token_verif = sha1($pseudo.$data->email.$data->password);
 
    if ($token == $token_verif) {
-   	  
-   	  $query = $db->prepare("UPDATE users SET active = '1' WHERE pseudo = ?");
+
+   	  $query = $db->prepare("UPDATE members SET active = '1' WHERE pseudo = ?");
         $query->execute([$pseudo]);
 
-        $query = $db->prepare("INSERT INTO friends_relationships(user_id1, user_id2, status) VALUES(?, ?, ?)");
-        $query->execute([$data->id, $data->id, '2']);
-
-
       set_flash('Votre compte a été bien activé, remplissez les deux(2) champ pour vous connecter svp', 'success');
-       
+
        redirect('login.php');
 
    }else{

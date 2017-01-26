@@ -3,9 +3,9 @@
 //function to sanitize an user input
 //fonction d'echapement de code
 if (!function_exists('e')) {
-	
+
 	function e($string){
-      
+
        if($string){
            return htmlspecialchars($string);
        }
@@ -21,7 +21,7 @@ if(!function_exists('say_hello')){
   $hour = date("H");
    global $db;
   $query = $db->prepare("SELECT name
-                          FROM members 
+                          FROM members
                           WHERE pseudo = :pseudo
                         ");
     $query->execute([
@@ -42,9 +42,9 @@ if(!function_exists('say_hello')){
 //cell count funtion
 //retourne le nombre d'enregistrement trouver en respectant une certaine condition
 if (! function_exists('cell_count')) {
-  
+
   function cell_count($table, $field_name, $field_value){
-      
+
       global $db;
 
       $query = $db->prepare("SELECT * FROM $table WHERE $field_name = ?");
@@ -56,11 +56,11 @@ if (! function_exists('cell_count')) {
 
 //funtion remember_me
 if (! function_exists('remember_me')) {
-  
+
   function remember_me($user_id){
 
     global $db;
-      
+
   //gener un token de mamière aleatoire
   $token = openssl_random_pseudo_bytes(24);
     //generer un selecteur de manirere aleatoire
@@ -79,19 +79,19 @@ if (! function_exists('remember_me')) {
     ]);
     //créer un cookie 'auth'(14 jrs expires) httponly=>true
     //contenu: base64_encode(selector).':'.base64_encode(token)
-   setcookie('auth', 
-    base64_encode($selector).':'.base64_encode($token), 
-    time()+1209600, 
-    null, 
-    null, 
-    false, 
+   setcookie('auth',
+    base64_encode($selector).':'.base64_encode($token),
+    time()+1209600,
+    null,
+    null,
+    false,
     true
     );
   }
 }
 //auto login funtion
 if (! function_exists('auto_login')) {
-  
+
   function auto_login(){
     global $db;
       //on verifie d'abord si le cookie auth exists
@@ -100,11 +100,11 @@ if (! function_exists('auto_login')) {
             if(count($split) !== 2){
                 return false;
             }
-       
+
        //on recupère via ce cookie le $selector, le $token
             list($selector, $token) = $split;
-            
-            $query = $db->prepare('SELECT auth_tokens.token, auth_tokens.user_id, 
+
+            $query = $db->prepare('SELECT auth_tokens.token, auth_tokens.user_id,
                                    members.id, members.pseudo, members.avatar, members.email
                                    FROM auth_tokens
                                    LEFT JOIN members
@@ -113,30 +113,30 @@ if (! function_exists('auto_login')) {
             $query->execute([base64_decode($selector)]);
 
             $data = $query->fetch(PDO::FETCH_OBJ);
-            
+
             if($data){
                 if(hash_equals($data->token, hash('sha256', base64_decode($token)))){
                   session_regenerate_id(true);
 
                   $_SESSION['user_id'] = $data->user_id;
-                  $_SESSION['pseudo'] = $data->pseudo;
-                  $_SESSION['avatar'] = $data->avatar;
-                  $_SESSION['email'] = $data->email;
+                  $_SESSION['pseudo']  = $data->pseudo;
+                  $_SESSION['avatar']  = $data->avatar;
+                  $_SESSION['email']   = $data->email;
 
                   return true;
                 }
             }
        }
-    
+
     return false;
   }
 }
 //fonction de redirection amical
 //function to redirect the member intention page
 if (! function_exists('redirect_intent_or')) {
-  
+
   function redirect_intent_or($default_url){
-      
+
        if($_SESSION['forwarding_url']){
           $url = $_SESSION['forwarding_url'];
        }else{
@@ -158,9 +158,9 @@ if (! function_exists('is_logged_in')) {
 
 //get a session value by key
 if (! function_exists('get_session')) {
-  
+
   function get_session($key){
-      
+
        if($key){
             return !empty($_SESSION[$key])
              ? e($_SESSION[$key])
@@ -171,16 +171,16 @@ if (! function_exists('get_session')) {
 
 //hash password with blowfish algorithm
 if (! function_exists('bcrypt_hash_password')) {
-  
+
   function bcrypt_hash_password($value, $options = array()){
-      
+
        $cost = isset($options['rounds']) ? $options['rounds'] : 10;
 
        $hash = password_hash($value, PASSWORD_BCRYPT, array('cost' => $cost));
 
        if ($hash === false) {
          throw new Exception("Brcrypt hash pas supporté.");
-         
+
        }
        return $hash;
   }
@@ -204,7 +204,7 @@ if(! function_exists('bcrypt_verify_password')){
 //find an user by his id
  //retrouver un membre grace à son Id
 if (! function_exists('find_user_by_id')) {
-  
+
   function find_user_by_id($id){
       global $db;
 
@@ -222,9 +222,9 @@ if (! function_exists('find_user_by_id')) {
 
 //la fonction "n'est pas vide" verifie si les champs ont été remplis.
 if (! function_exists('not_empty')) {
-	
+
 	function not_empty($fields = []){
-      
+
        if (count($fields) != 0) {
        	foreach ($fields as $field ) {
        		if (empty($_POST[$field]) || trim($_POST[$field]) == "") {
@@ -280,7 +280,7 @@ if (! function_exists('save_input_data')) {
 
           $_SESSION['input'][$key] = $value;
       }
-        
+
     }
   }
  }
@@ -290,7 +290,7 @@ if (! function_exists('save_input_data')) {
  if (! function_exists('get_input')) {
 
        function get_input($key){
-    
+
     return !empty($_SESSION['input'][$key])
 
     ? e($_SESSION['input'][$key])
