@@ -20,7 +20,7 @@ if(!function_exists('say_hello')){
   function say_hello() {
   $hour = date("H");
    global $db;
-  $query = $db->prepare("SELECT name
+  $query = $db->prepare("SELECT pseudo
                           FROM members
                           WHERE pseudo = :pseudo
                         ");
@@ -28,12 +28,12 @@ if(!function_exists('say_hello')){
     'pseudo' => $_SESSION['pseudo']
     ]);
     $reponse = $query->fetch();
-      $nom = $reponse['name'];
+      $pseudo = $reponse['pseudo'];
       if ($hour >= 0 && $hour <= 18) {
-      echo 'Salut '. $nom ;
+      echo 'Salut '. $pseudo ;
       }
       elseif($hour > 18 && $hour <= 23) {
-      echo'Bonsoir '. $nom ;
+      echo'Bonsoir '. $pseudo ;
       }
     }
 }

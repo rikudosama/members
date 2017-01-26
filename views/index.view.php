@@ -3,7 +3,6 @@
 <?php include('partials/_flash.php');?>
 
     <div class="container">
-
       <div class="row">
       	<div class="col-lg-6 col-md-6">
       		<form data-parsley-validate class="col-lg-12" autocomplete="off" method="post" action="index.php">

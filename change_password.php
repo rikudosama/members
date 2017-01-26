@@ -13,20 +13,20 @@ if (isset($_POST['change_password'])) {
       //si tout les champs ont été remplis
 
       if (not_empty(['current_password', 'new_password', 'new_password_confirmation'])) {
-       
+
          extract($_POST);
 
          if (mb_strlen($new_password) < 6) {
             $errors[] = "mot de passe trop court! (minimum 6 caractères) ";
         }else{
             if ($new_password != $new_password_confirmation) {
-                
+
                 $errors[] = "Les 2 mots de passe ne concordent pas";
             }
         }
         if (count($errors) == 0) {
-            $query = $db->prepare("SELECT password AS hashed_password FROM users  
-                            WHERE (id = :id ) 
+            $query = $db->prepare("SELECT password AS hashed_password FROM users
+                            WHERE (id = :id )
                             AND active = '1' ");
             $query->execute([
 
@@ -36,15 +36,15 @@ if (isset($_POST['change_password'])) {
 
             $user = $query->fetch(PDO::FETCH_OBJ);
          if ($user && bcrypt_verify_password($current_password, $user->hashed_password)) {
-             
-             $query = $db->prepare("UPDATE users 
+
+             $query = $db->prepare("UPDATE users
                                 SET password = :password
                                 WHERE id = :id");
-         $query->execute([
+             $query->execute([
 
-             'password' => bcrypt_hash_password($new_password),
-             'id' =>get_session('user_id')
-            ]);
+               'password' => bcrypt_hash_password($new_password),
+               'id' =>get_session('user_id')
+               ]);
          set_flash("Votre mot de passe a été bien modifier");
          redirect('profile.php?id='.get_session('user_id'));
 
@@ -55,13 +55,13 @@ if (isset($_POST['change_password'])) {
              }
         }
 
-         
+
      }else{
      	save_input_data();
 
      	$errors[] ="Veillez remplir tout les chmps marqués d'un (*)";
      }
-      
+
 }else{
       clear_input_data();//à son arrivé aucun champ de devra être pre-remplis(users)
 }

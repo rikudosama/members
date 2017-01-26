@@ -4,7 +4,7 @@ require '../../config/database.php';
 /*
 Uploadify
 Copyright (c) 2012 Reactive Apps, Ronnie Garcia
-Released under the MIT License <http://www.opensource.org/licenses/mit-license.php> 
+Released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
 */
 
 // Define a destination(defintion de la destination)
@@ -21,18 +21,18 @@ if (!empty($_FILES) && $_POST['token'] == $verifyToken) {
 	// Validate the file type(Validatetion du fichier)
 	$fileTypes = array('jpg','jpeg','gif','png'); // File extensions,(extensions des fichiers)
 	$fileParts = pathinfo($_FILES['avatar']['name']);
-	
+
 	$randomFileName = md5(uniqid(rand())) .'.' .$fileParts['extension'];
 	$targetFile = rtrim($targetPath,'/') . '/' . $randomFileName;
-	
+
 	if (in_array($fileParts['extension'],$fileTypes)) {
 		if(move_uploaded_file($tempFile,$targetFile)){
-           
-           $query = $db->prepare('UPDATE users SET avatar = ? WHERE id = ?');
+
+           $query = $db->prepare('UPDATE members SET avatar = ? WHERE id = ?');
            $query->execute([$targetFolder.'/'.$randomFileName, $_POST['user_id']]);
            $_SESSION['avatar'] = $targetFolder.'/'.$randomFileName;
 		}
-		
+
 	} else {
 		echo 'Type de fichier non supporté.';
 	}

@@ -50,7 +50,7 @@
                     <li><a href="index.php">Acueil</a></li>
                     <?php if(isset($_SESSION['user_id'])): ?>
                     <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="<?= get_session('avatar') ?  get_session('avatar') : get_avatar_url(e($user->email)) ?>" class="avatar-xs"><span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="profile.php"><i class="fa fa-user"></i> Mon profile</a></li>
                   <li><a href="change_password.php"><i class="fa fa-cog"></i> changer mon mot de passe</a></li>

@@ -2,6 +2,7 @@
 <?php include('partials/_flash.php');?>
 
 <div id="main-content">
+<h1 class="text-primary text-center"> <?php say_hello(); ?></h1>
     <div class="container">
      <div class="row">
        <div class="col-md-12">
