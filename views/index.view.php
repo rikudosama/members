@@ -56,7 +56,7 @@
           <p>
           	si vous n'avez pas de compte remplisez le ☜ formulaire avec le titre <strong>inscription</strong>.<br/>
           </p>
-          <em>Je sais mon design est impeu mama miya je ne suis pas doué donc on fera avec 😄😄😄!!!</em>
+          <em>Je sais mon design est impeu oups! pas jolie.Je ne suis pas doué donc on fera avec 😄😄😄!!!</em>
       		</div>
       	</div>
       </div>

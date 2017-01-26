@@ -48,7 +48,9 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav pull-right">
+                    <?php if(!isset($_SESSION['user_id'])): ?>
                     <li><a href="index.php">Acueil</a></li>
+                  <?php endif; ?>
                     <?php if(isset($_SESSION['user_id'])): ?>
                     <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="<?= get_session('avatar') ?  get_session('avatar') : get_avatar_url(e($user->email)) ?>" class="avatar-xs"><span class="caret"></span></a>

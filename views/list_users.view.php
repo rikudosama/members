@@ -10,7 +10,7 @@
      <?php foreach ($member_set as $member): ?>
        <div class="col-md-3 member-block">
          <a href="profile.php?id=<?=$member->id?>">
-           <img src="<?= $member->avatar ? $member->avatar : get_avatar_url(e($member->email)) ?>" alt="<?=e($member->pseudo)?>" class="avatar img-polaroid">
+           <img src="<?= $member->avatar ? $member->avatar : get_avatar_url(e($member->email)) ?>" alt="<?=e($member->pseudo)?>" class="avatar img-polaroid avatar-md">
          </a>
          <h4 class="member-block-membername">
            <a href="profile.php?id=<?=$member->id?>">
