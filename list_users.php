@@ -8,6 +8,7 @@ require('includes/init.php');
 $req = $db->query("SELECT id FROM members WHERE active = '1'");
 
   $nbre_total_members = $req->rowCount();
+  if ($nbre_total_members >=1) {
 
   $nbre_members_par_page = 12;
 
@@ -66,4 +67,8 @@ $req = $db->query("SELECT id FROM members WHERE active = '1'");
   }
   $pagination .='</ul></nav>';
 require('views/list_users.view.php');
+}else{
+  set_flash("Aucun membre pour le moment", 'warning');
+  redirect('index.php');
+}
 ?>
