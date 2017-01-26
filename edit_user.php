@@ -26,19 +26,16 @@ if (isset($_POST['update'])) {
       //si tout les champs ont été remplis
 
       if (not_empty(['firstname', 'name', 'pseudo', 'city', 'country', 'sex', 'bio'])) {
-       
+
          extract($_POST);
 
-         $query = $db->prepare("UPDATE users 
-         	                    SET firstname = :firstname,
-         	                    name = :name, pseudo = :pseudo, 
-         	                    city = :city, country = :country, 
-         	                    sex = :sex, twitter = :twitter, github = :github, facebook = :facebook, 
-         	                    website = :website, available_for_hiring = :available_for_hiring, bio = :bio
-         	                    WHERE id = :id");
+         $query = $db->prepare("UPDATE users
+                                  SET name = :name, pseudo = :pseudo,
+                                  city     = :city, country = :country,
+                                  sex      = :sex, twitter = :twitter, github = :github,
+                                  available_for_hiring = :available_for_hiring, bio = :bio
+                                  WHERE id = :id");
          $query->execute([
-
-             'firstname' => $firstname,
              'name' => $name,
              'pseudo' => $pseudo,
              'city' => $city,
@@ -46,8 +43,6 @@ if (isset($_POST['update'])) {
              'sex' => $sex,
              'twitter' => $twitter,
              'github' => $github,
-             'facebook' => $facebook,
-             'website' => $website,
              'available_for_hiring' => !empty($available_for_hiring)? '1' :'0',
              'bio' => $bio,
              'id' =>get_session('user_id')
@@ -60,7 +55,7 @@ if (isset($_POST['update'])) {
 
      	$errors[] ="Veillez remplir tout les chmps marqués d'un (*)";
      }
-      
+
 }else{
       clear_input_data();//à son arrivé aucun champ de devra être pre-remplis(users)
 }

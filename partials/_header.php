@@ -12,12 +12,12 @@
     <title>
       <?=
          isset($title)
-        ?$title.' - '.WEBSITE_NAME : 
+        ?$title.' - '.WEBSITE_NAME :
         WEBSITE_NAME.' -simple,rapide,facile,efficace!';
       ?>
     </title>
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="assets/css/app.min.css" >
     <!--font-awesome core css -->
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

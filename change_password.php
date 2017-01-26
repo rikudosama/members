@@ -35,7 +35,6 @@ if (isset($_POST['change_password'])) {
             ]);
 
             $user = $query->fetch(PDO::FETCH_OBJ);
-
          if ($user && bcrypt_verify_password($current_password, $user->hashed_password)) {
              
              $query = $db->prepare("UPDATE users 

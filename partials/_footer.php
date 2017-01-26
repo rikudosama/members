@@ -5,7 +5,7 @@
     <script src="assets/js/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/script.js"></script>
     <script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/app.js"></script>
     <script type="text/javascript" src="libraries/parsley/parsley.min.js"></script>
     <script type="text/javascript" src="libraries/parsley/i18n/fr.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

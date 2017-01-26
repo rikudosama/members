@@ -10,15 +10,9 @@
            </div>
            <div class="panel-body">
              <?php include('partials/_errors.php');?>
-             <form data-parsley-validate method="post" class="well" autocomplete="off">
+             <form data-parsley-validate method="post" autocomplete="off">
                <div class="row">
-                 <div class="col-md-6">
-                    <div class="form-group">
-                       <label for="firstname">Prénom<span class="text-danger"> *</span></label>
-                       <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Paul" value="<?= get_input('firstname') ? get_input('firstname') : e($user->firstname); ?>" required="required" />
-                    </div>
-                 </div>
-                 <div class="col-md-6">
+                 <div class="col-md-12">
                    <div class="form-group">
                        <label for="name">Nom<span class="text-danger"> *</span></label>
                        <input type="text" name="name" class="form-control" id="name" placeholder="Ouedraogo" value="<?= get_input('name') ? get_input('name') : e($user->name); ?>" required="required" />
@@ -67,7 +61,7 @@
                      <input type="file" name="avatar" id="avatar" />
                    </div>
                  </div>
-               </div>
+                 </div>
                <div class="row">
                  <div class="col-md-6">
                    <div class="form-group">
@@ -81,21 +75,7 @@
                        <input type="text" name="github" class="form-control" id="github" placeholder="doe"  value="<?= get_input('github') ? get_input('github') : e($user->github)?>"/>
                     </div>
                  </div>
-               </div>
-               <div class="row">
-                 <div class="col-md-6">
-                   <div class="form-group">
-                       <label for="facebook">Facebook</label>
-                       <input type="text" name="facebook" class="form-control" id="facebook" placeholder="doe" value="<?= get_input('facebook') ? get_input('facebook') : e($user->facebook)?>" />
-                    </div>
                  </div>
-                 <div class="col-md-6">
-                   <div class="form-group">
-                       <label for="website">Votre site web</label>
-                       <input type="text" name="website" class="form-control" id="website" placeholder="monsiteweb.com" value="<?= get_input('website') ? get_input('website') : e($user->website)?>" />
-                    </div>
-                 </div>
-               </div>
                <div class="row">
                  <div class="col-md-12">
                    <div class="form-group">
@@ -119,7 +99,7 @@
            </div>
          </div>
        </div>
-      <?php endif; ?> 
+      <?php endif; ?>
     </div>
   </div>
 </div>
@@ -127,7 +107,7 @@
 <script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="libraries/uploadify/jquery.uploadify.min.js"></script>
 <script type="text/javascript" src="libraries/alertifyjs/alertify.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/app.js"></script>
 <script type="text/javascript" src="libraries/parsley/parsley.min.js"></script>
 <script type="text/javascript" src="libraries/parsley/i18n/fr.js"></script>
  <script type="text/javascript">

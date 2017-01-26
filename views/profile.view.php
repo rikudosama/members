@@ -57,8 +57,7 @@
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="libraries/sweetalert/sweetalert.min.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/app.js"></script>
     <script type="text/javascript" src="assets/js/jquery.timeago.js"></script>
     <script type="text/javascript" src="assets/js/jquery.timeago.fr.js"></script>
     <script type="text/javascript" src="libraries/parsley/parsley.min.js"></script>

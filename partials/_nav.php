@@ -11,13 +11,13 @@
     <title>
         <?=
           isset($title)
-          ?$title.' - '.WEBSITE_NAME : 
+          ?$title.' - '.WEBSITE_NAME :
           WEBSITE_NAME.' -simple,rapide,facile,efficace!';
         ?>
     </title>
 
     <!-- Bootstrap -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/app.css" rel="stylesheet">
     <link href="assets/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
 
@@ -40,15 +40,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Espace Membre</a>
+                <a class="navbar-brand" href="index.php">Espace Membre</a>
                 <ul class="nav navbar-nav">
                   <li><a href="list_users.php">Liste des membres</a></li>
-                  <li><a href="#">Link</a></li>
-                </ul>            
+                </ul>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav pull-right">
                     <li><a href="index.php">Acueil</a></li>
+                    <?php if(isset($_SESSION['user_id'])): ?>
                     <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -58,9 +58,13 @@
                   <li role="separator" class="divider"></li>
                   <!--<li class="dropdown-header">Nav header</li>-->
                   <li><a href="logout.php"><i class="fa fa-sign-out"></i> Déconnection</a></li>
-                  <li><a href="login.php"><i class="fa fa-sign-in"></i> Connexion</a></li>
+                <?php endif; ?>
+                <?php if(!isset($_SESSION['user_id'])): ?>
+                <li><a href="login.php"><i class="fa fa-sign-in"></i> Connexion</a>
+                </li>
+              <?php endif; ?>
                 </ul>
-              </li>              
+              </li>
                 </ul>
             </div>
         </div>
