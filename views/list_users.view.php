@@ -21,6 +21,7 @@
      <?php endforeach;?>
     </div>
   <?php endforeach;?>
+  <div id="pagination"><?= $pagination; ?></div>
     </div>
 </div>
 
