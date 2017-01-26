@@ -7,7 +7,7 @@
        <div class="col-md-12 btn">
            <div class="panel panel-info">
              <div class="panel-heading">
-             <h3 class="panel-title">Page de Profil de : <?= e($user->pseudo)?> </h3>
+             <h4 class="panel-title">Page de Profil de : <?= ucfirst(e($user->pseudo))?> </h4>
            </div>
            <div class="panel-body">
              <div class="row">
