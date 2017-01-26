@@ -2,10 +2,9 @@
 <?php include('partials/_flash.php');?>
 
 <div id="main-content">
-<h1 class="text-primary text-center"> <?php say_hello(); ?></h1>
     <div class="container">
      <div class="row">
-       <div class="col-md-12">
+       <div class="col-md-12 btn">
            <div class="panel panel-info">
              <div class="panel-heading">
              <h3 class="panel-title">Page de Profil de : <?= e($user->pseudo)?> </h3>
@@ -13,14 +12,14 @@
            <div class="panel-body">
              <div class="row">
                <div class="col-md-5">
-                 <img src="<?= $user->avatar ? $user->avatar : get_avatar_url(e($user->email)) ?>" alt="<?=e($user->pseudo)?>" class="img-polaroid avatar-md">
+                 <img src="<?= $user->avatar ? $user->avatar : get_avatar_url(e($user->email)) ?>" alt="<?=e($user->pseudo)?>" class="img-rounded avatar-md">
                </div>
                <div class="col-md-7">
                </div>
              </div>
              <div class="row">
                <div class="col-sm-6">
-                 <strong><?=e($user->pseudo) ?></strong><br/>
+                 <h4><strong><?=e($user->pseudo) ?></strong></h4><br/>
                  <i></i><a href="mailto:<?=e($user->email, 100) ?>"><?= e($user->email) ?></a><br/>
                  <?=
                    $user->city && $user->country ? '<i class="fa fa-location-arrow"></i>&nbsp;'.e($user->city).' - '.e($user->country).'<br/>' : '';
@@ -43,7 +42,7 @@
                <hr>
              </div>
              <div class="row">
-               <div class="col-md-12 well">
+               <div class="col-md-12 well status-media">
                  <h4 style="color:black;">Petite description de <?= e($user->pseudo) ?></h4>
                  <p>
                    <?=

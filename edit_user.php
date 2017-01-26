@@ -25,11 +25,11 @@ if (isset($_POST['update'])) {
 
       //si tout les champs ont été remplis
 
-      if (not_empty(['firstname', 'name', 'pseudo', 'city', 'country', 'sex', 'bio'])) {
+      if (not_empty([ 'name', 'pseudo', 'city', 'country', 'sex', 'bio'])) {
 
          extract($_POST);
 
-         $query = $db->prepare("UPDATE users
+         $query = $db->prepare("UPDATE members
                                   SET name = :name, pseudo = :pseudo,
                                   city     = :city, country = :country,
                                   sex      = :sex, twitter = :twitter, github = :github,

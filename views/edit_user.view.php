@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <?php if(!empty($_GET['id']) && $_GET['id'] === get_session('user_id')): ?>
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-8 col-md-offset-2 btn">
          <div class="panel panel-info">
            <div class="panel-heading">
              <h3 class="panel-title">Compléter mon profile</h3>
@@ -58,7 +58,7 @@
                  <div class="col-md-12">
                    <div class="form-group">
                      <label for="avatar">modifier mon avatar</label>
-                     <input type="file" name="avatar" id="avatar" />
+                     <input type="file" class="dropzone" name="avatar" id="avatar" />
                    </div>
                  </div>
                  </div>
@@ -108,6 +108,7 @@
 <script type="text/javascript" src="libraries/uploadify/jquery.uploadify.min.js"></script>
 <script type="text/javascript" src="libraries/alertifyjs/alertify.min.js"></script>
 <script src="assets/js/app.js"></script>
+<script src="assets/js/dropzone.js"></script>
 <script type="text/javascript" src="libraries/parsley/parsley.min.js"></script>
 <script type="text/javascript" src="libraries/parsley/i18n/fr.js"></script>
  <script type="text/javascript">

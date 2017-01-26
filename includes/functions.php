@@ -33,7 +33,7 @@ if(!function_exists('say_hello')){
       echo 'Salut '. $pseudo ;
       }
       elseif($hour > 18 && $hour <= 23) {
-      echo'Bonsoir '. $pseudo ;
+      echo 'Bonsoir '. $pseudo ;
       }
     }
 }
