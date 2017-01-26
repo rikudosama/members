@@ -12,33 +12,6 @@ if (!function_exists('e')) {
 	}
 }
 
-
-//function tout say hello tout the members about the time
-//fonction qui salut les membres selon le temps qu'il fait
-
-if(!function_exists('say_hello')){
-  function say_hello() {
-  $hour = date("H");
-   global $db;
-  $query = $db->prepare("SELECT pseudo
-                          FROM members
-                          WHERE pseudo = :pseudo
-                        ");
-    $query->execute([
-    'pseudo' => $_SESSION['pseudo']
-    ]);
-    $reponse = $query->fetch();
-      $pseudo = $reponse['pseudo'];
-      if ($hour >= 0 && $hour <= 18) {
-      echo 'Salut '. $pseudo ;
-      }
-      elseif($hour > 18 && $hour <= 23) {
-      echo 'Bonsoir '. $pseudo ;
-      }
-    }
-}
-
-
 //cell count funtion
 //retourne le nombre d'enregistrement trouver en respectant une certaine condition
 if (! function_exists('cell_count')) {
