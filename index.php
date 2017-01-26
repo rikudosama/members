@@ -22,7 +22,7 @@ if (isset($_POST['register'])) {
 		}
 
 		if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			
+
 			$errors[] = "Votre adresse email est non valide!";
 		}
 
@@ -30,7 +30,7 @@ if (isset($_POST['register'])) {
 			$errors[] = "Votre mot de passe trop court! (minimum 6 caractères) ";
 		}else{
 			if ($password != $password_confirm) {
-				
+
 				$errors[] = "Les 2 mots de passe ne concordent pas";
 			}
 		}
@@ -43,37 +43,28 @@ if (isset($_POST['register'])) {
 		if (is_already_in_use('email', $email, 'members')) {
 			$errors[] = "cette adresse E-mail déja utilisé !";
 		}
- 
+
 		if (count($errors) == 0) {
 			//envoi d'un mail d'activation
-            $password = bcrypt_hash_password($password);
-			$token = sha1($pseudo.$email.$password);
-			 // On créé une nouvelle instance de la classe
-            $mail = new PHPMailer();
- 
-            // De qui vient le message, e-mail puis nom
-            $mail->From = "Espace membres !";
-            $mail->FromName = WEBSITE_NAME;
- 
-            // Définition du sujet/objet
-            $mail->Subject = WEBSITE_NAME. "- ACTIVATION DE COMPTE";
- 
-            // On lit le contenu d'une page html
-            $body = file_get_contents('tmp/emails/activation.tmpl.php');
- 
-            // On définit le contenu de cette page comme message
-            $mail->MsgHTML($body);
- 
-            // On pourra définir un message alternatif pour les boîtes de
-            // messagerie n'acceptant pas le html
-            $mail->AltBody = "Ce message est au format HTML, votre messagerie n'accepte pas ce format.";
- 
-            // Il reste encore à ajouter au moins un destinataire
-            $mail->AddAddress($email);
- 
-           // Pour finir, on envoi l'e-mail
-            $mail->send();
+            //envoi d'un mail d'activation
 
+      $to = $email;
+
+      $subject = WEBSITE_NAME. "- ACTIVATION DE COMPTE";
+
+      $password = bcrypt_hash_password($password);
+
+      $token = sha1($pseudo.$email.$password);
+
+      ob_start();
+      require('templ/emails/activation.tmpl.php');
+      $content = ob_get_clean();
+
+      $headers = 'MIME Version 1.0'. "\r\n";
+
+      $headers = 'Content-type: text/html;charset=iso-8859-1'."\r\n";
+
+      mail($to, $subject, $content, $headers);
 
 			//on informe l'utilisateur pour qu'il verifi sa boite mail
 			set_flash("Un  mail d'activation vous a été envoyé !", 'success');

@@ -26,33 +26,25 @@ if (isset($_POST['renit'])) {
 
         if ($member) {
             //envoi d'un mail de reinitialisation
-            $token = sha1($member->pseudo.$member->email.$member->hashedpassword);
-             // On créé une nouvelle instance de la classe
-            $mail = new PHPMailer();
+            //envoi d'un mail d'activation
 
-            // De qui vient le message, e-mail puis nom
-            $mail->From = "Espace membres !";
-            $mail->FromName = WEBSITE_NAME;
+            $to = $email;
 
-            // Définition du sujet/objet
-            $mail->Subject = WEBSITE_NAME. "- REINITIALISATION DE MOT DE PASSE";
+            $subject = WEBSITE_NAME. "- REINITIALISATION DU MOT DE PASSE";
 
-            // On lit le contenu d'une page html
-            $body = file_get_contents('tmp/emails/reinitialisation.tmpl.php');
+            $password = bcrypt_hash_password($password);
 
-            // On définit le contenu de cette page comme message
-            $mail->MsgHTML($body);
+            $token = sha1($pseudo.$email.$password);
 
-            // On pourra définir un message alternatif pour les boîtes de
-            // messagerie n'acceptant pas le html
-            $mail->AltBody = "Ce message est au format HTML, votre messagerie n'accepte pas ce format.";
+            ob_start();
+            require('templ/emails/reset.tmpl.php');
+            $content = ob_get_clean();
 
-            // Il reste encore à ajouter au moins un destinataire
-            $mail->AddAddress($member->email);
+            $headers = 'MIME Version 1.0'. "\r\n";
 
-           // Pour finir, on envoi l'e-mail
-            $mail->send();
+            $headers = 'Content-type: text/html;charset=iso-8859-1'."\r\n";
 
+            mail($to, $subject, $content, $headers);
 
             //on informe l'utilisateur pour qu'il verifi sa boite mail
             set_flash("Un  mail vous a été envoyé! Veillez verifier votre boite email SVP <a href=\"login.php\">Connectez-vous</a>", 'success');
