@@ -37,7 +37,7 @@ if (isset($_POST['renit'])) {
             $token = sha1($pseudo.$email.$password);
 
             ob_start();
-            require('templ/emails/reset.tmpl.php');
+            require('tmpl/emails/reset.tmpl.php');
             $content = ob_get_clean();
 
             $headers = 'MIME Version 1.0'. "\r\n";
